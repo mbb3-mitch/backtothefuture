@@ -1,19 +1,31 @@
 const Translator = require("../../utils/Translator");
 const translator = new Translator();
 
-function replaceFont() {
+//font-family: 'Libre Barcode 39 Text', cursive;
+
+function replaceFont(time) {
+    var type = "";
+    if (time == 1){
+        return;
+    } else if (time == 0) {
+        type = "Diplomata SC";
+    } else if (time == 2) {
+        type = 'Monoton';
+    }
     let fontLink = document.createElement('link');
     fontLink.rel = 'stylesheet';
-    fontLink.href = "https://fonts.googleapis.com/css?family=Tangerine";
     document.body.appendChild(fontLink);
+    fontLink.href = "https://fonts.googleapis.com/css?family=Diplomata+SC|Monoton";
     let newFont = document.createElement('style');
-    newFont.textContent = "      body {\n" +
-        "        font-family: 'Tangerine' !important;\n" +
+    newFont.textContent = "" +
+        "BODY, H3, H2, H1, P, SPAN{\n" +
+        "        font-family: " + type + " !important;\n" +
         "      }";
     document.body.appendChild(newFont);
 }
 
 window.addEventListener('load', () => {
+<<<<<<< HEAD
 replaceFont();
 
 	chrome.extension.sendMessage({}, function(response) {
@@ -61,6 +73,9 @@ replaceFont();
 
 
     replaceFont();
+=======
+    var time = 2;
+>>>>>>> d58c1f8... Font - 3 sets of fonts
 
     let all = document.getElementsByTagName("*");
 	let textElements = [];
@@ -71,7 +86,12 @@ replaceFont();
 			textElements.push({el : all[i], english : all[i].innerText});
 		}
 	}
+<<<<<<< HEAD
 /*
+=======
+    replaceFont(time);
+
+>>>>>>> d58c1f8... Font - 3 sets of fonts
 	translator.translateHtml(textElements, 'toEmoji', (err) => {
 		if (err) {
 			console.log(err);
