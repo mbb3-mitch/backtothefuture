@@ -38,9 +38,16 @@ class Translator {
 
 	translateHtml(textElements, toLanguage, callback) {
 		async.eachSeries(textElements, (textElement, cb) => {
-			this[toLanguage](textElement.innerText, (err, text) => {
-				console.log(textElement.innerText);
-				textElement.innerText = text;
+			if (typeof textElement[toLanguage] != 'undefined') {
+				textElement.el.innerText = textElement[toLanguage];
+				cb();
+				return;
+			}
+
+			this[toLanguage](textElement.el.innerText, (err, text) => {
+				console.log(text);
+				textElement.el.innerText = text;
+				textElement[toLanguage] = text;
 				cb();
 			});
 		}, callback);
