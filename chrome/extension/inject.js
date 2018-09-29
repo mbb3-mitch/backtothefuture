@@ -1,61 +1,36 @@
-import React, {Component} from 'react';
-import {render} from 'react-dom';
-import Dock from 'react-dock';
-
-class InjectApp extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {isVisible : false};
-	}
-
-	buttonOnClick = () => {
-		this.setState({isVisible : !this.state.isVisible});
-	};
-
-	render() {
-		return (
-			< div >
-			< button
-		onClick = {this.buttonOnClick
-	}>
-		Open
-		app
-		< /button>
-		< Dock
-		position = "right"
-		dimMode = "transparent"
-		defaultSize = {0.4}
-		isVisible = {this.state.isVisible
-	}
-	>
-	<
-		iframe
-		style = {
-		{
-			width: '100%',
-				height
-		:
-			'100%',
-		}
-	}
-		frameBorder = {0}
-		allowTransparency = "true"
-		src = {chrome.extension.getURL(`inject.html?protocol=${location.protocol}`)
-	}
-		/>
-		< /Dock>
-		< /div>
-	)
-		;
-	}
-}
-
-const async = require('async');
 const Translator = require("../../utils/Translator");
 const translator = new Translator();
 
 
+
 window.addEventListener('load', () => {
+
+	chrome.extension.sendMessage({}, function(response) {
+		var readyStateCheckInterval = setInterval(function() {
+			if (document.readyState === "complete") {
+				clearInterval(readyStateCheckInterval);
+
+				// ----------------------------------------------------------
+				// This part of the script triggers when page is done loading
+				console.log("Hello. This message was sent from scripts/inject.js");
+				// ----------------------------------------------------------
+			}
+		}, 10);
+	});
+	chrome.runtime.onMessage.addListener(
+		function(request, sender, sendResponse) {
+			console.log(request);
+			sendResponse();
+		}
+	);
+	document.addEventListener('yourEventName', function(e){
+		//send message to ext
+		var someInformation = {/*your msg here*/}
+		chrome.extension.sendMessage(someInformation, function(response) {
+			//callback
+		});
+	}, false);
+
 	let all = document.getElementsByTagName("*");
 	let textElements = [];
 
@@ -64,10 +39,12 @@ window.addEventListener('load', () => {
 			textElements.push(all[i]);
 		}
 	}
-
+/*
 	translator.translateHtml(textElements, 'toEmoji', (err) => {
 		if (err) {
 			console.log(err);
 		}
-	});
+	});*/
 });
+
+
