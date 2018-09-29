@@ -1,5 +1,5 @@
 let windowId = 0;
-const CONTEXT_MENU_ID = 'example_context_menu';
+const CONTEXT_MENU_ID = 'back-to-the-future-context-menu';
 
 function closeIfExist() {
   if (windowId > 0) {
@@ -27,7 +27,7 @@ function popWindow(type) {
 
 chrome.contextMenus.create({
   id: CONTEXT_MENU_ID,
-  title: 'React Chrome Extension Example',
+  title: 'Back to the future',
   contexts: ['all'],
   documentUrlPatterns: [
     'https://github.com/*'

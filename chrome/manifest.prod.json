@@ -1,10 +1,10 @@
 {
-  "version": "0.0.0",
-  "name": "react-chrome-extension-example",
+  "version": "1.0.0",
+  "name": "Back to the future",
   "manifest_version": 2,
-  "description": "Example for react-chrome-extension-boilerplate",
+  "description": "A chrome extension to translate a website through time.",
   "browser_action": {
-    "default_title": "React Chrome Extension Example",
+    "default_title": "Back to the future",
     "default_popup": "popup.html"
   },
   "icons": {
