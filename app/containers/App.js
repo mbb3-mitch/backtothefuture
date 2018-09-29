@@ -1,23 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import Header from '../components/Header';
 import SimpleSlider from '../components/SimpleSlider';
-import style from './App.css';
+import {withStyles} from '@material-ui/core/styles';
 
-@connect(
-  state => ({
-    todos: state.todos
-  })
-)
-export default class App extends React.Component {
+const styles = {
+	container : {
+		background : '#ffffff',
+		margin : '76px 20px 20px 20px',
+		position : 'relative',
+		'box-shadow' : '0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1)',
+        'min-width': '295px'
+	}
+};
+
+class App extends React.Component {
   render() {
-    return (
-      <div className={style.normal}>
-        <Header />
-        <SimpleSlider  />
-      </div>
+	  const {classes} = this.props;
+	  return (
+		  <div className={classes.container}>
+			  <Header/> <SimpleSlider/>
+		  </div>
     );
   }
 }
+
+export default withStyles(styles)(App);

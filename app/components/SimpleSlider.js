@@ -1,18 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/Slider';
 
 const styles = {
-	root: {
-		width: 300,
+	slider : {
+		'text-align' : 'center',
+		margin : 'auto',
+		padding : '20px',
 	},
+	'slider__label-container' : {
+		display: 'flex',
+		'justify-content': 'space-between'
+	},
+	'slider__label' : {
+
+	},
+	'slider__value' : {
+		padding: '20px 0 0 0'
+	}
 };
 
 class SimpleSlider extends React.Component {
 	state = {
-		value: 50,
+		value : 1,
 	};
 
 	handleChange = (event, value) => {
@@ -24,9 +35,11 @@ class SimpleSlider extends React.Component {
 		const { value } = this.state;
 
 		return (
-			<div className={classes.root}>
-				<Typography id="label">Slider label</Typography>
-				<Slider value={value} aria-labelledby="label" onChange={this.handleChange} />
+			<div className={classes.slider}>
+				<div className={classes['slider__label-container']}>
+					<span className={classes['slider__label']}>Past</span> <span className={classes['slider__label']}>Present</span> <span className={classes['slider__label']}>Future</span>
+				</div>
+				<Slider className={classes['slider__value']} value={value} onChange={this.handleChange} min={0} max={2} step={1} aria-labelledby="label"/>
 			</div>
 		);
 	}
