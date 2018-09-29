@@ -1,9 +1,34 @@
+
+class InjectApp extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {isVisible: false};
+    }
+
+    buttonOnClick = () => {
+        this.setState({isVisible: !this.state.isVisible});
+    };
+}
+
+
+const async = require('async');
 const Translator = require("../../utils/Translator");
 const translator = new Translator();
 
-
+function replaceFont() {
+    let fontLink = document.createElement('link');
+    fontLink.rel = 'stylesheet';
+    fontLink.href = "https://fonts.googleapis.com/css?family=Tangerine";
+    document.body.appendChild(fontLink);
+    let newFont = document.createElement('style');
+    newFont.textContent = "      body {\n" +
+        "        font-family: 'Tangerine' !important;\n" +
+        "      }";
+    document.body.appendChild(newFont);
+}
 
 window.addEventListener('load', () => {
+replaceFont();
 
 	chrome.extension.sendMessage({}, function(response) {
 		var readyStateCheckInterval = setInterval(function() {
@@ -31,7 +56,9 @@ window.addEventListener('load', () => {
 		});
 	}, false);
 
-	let all = document.getElementsByTagName("*");
+    replaceFont();
+
+    let all = document.getElementsByTagName("*");
 	let textElements = [];
 
 	for (var i = 0, max = all.length; i < max; i++) {
