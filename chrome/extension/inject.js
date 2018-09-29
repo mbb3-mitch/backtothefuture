@@ -21,11 +21,11 @@ const translator = new Translator();
 function replaceFont() {
     let fontLink = document.createElement('link');
     fontLink.rel = 'stylesheet';
-    fontLink.href = "https://github.com/mbb3-mitch/backtothefuture/blob/ffc102a5b594ceb77addc2a0f9942d1c015e7aa1/media/fonts/OldLondon.ttf?raw=true";
+    fontLink.href = "https://fonts.googleapis.com/css?family=Tangerine";
     document.body.appendChild(fontLink);
     let newFont = document.createElement('style');
     newFont.textContent = "      body {\n" +
-        "        font-family: 'Old London' !important;\n" +
+        "        font-family: 'Tangerine' !important;\n" +
         "      }";
     document.body.appendChild(newFont);
 }
