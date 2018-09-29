@@ -1,17 +1,3 @@
-
-class InjectApp extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {isVisible: false};
-    }
-
-    buttonOnClick = () => {
-        this.setState({isVisible: !this.state.isVisible});
-    };
-}
-
-
-const async = require('async');
 const Translator = require("../../utils/Translator");
 const translator = new Translator();
 
