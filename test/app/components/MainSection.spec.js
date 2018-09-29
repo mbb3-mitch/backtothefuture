@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import MainSection from '../../../app/components/MainSection';
+import MainSection from '../../../app/components/SimpleSlider';
 import style from '../../../app/components/MainSection.css';
 import TodoItem from '../../../app/components/TodoItem';
 import Footer from '../../../app/components/Footer';
@@ -36,7 +36,7 @@ function setup(propOverrides) {
   return { props, output, renderer };
 }
 
-describe('todoapp MainSection component', () => {
+describe('app MainSection component', () => {
   it('should render correctly', () => {
     const { output } = setup();
     expect(output.type).to.equal('section');
