@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import SimpleSlider from '../components/SimpleSlider';
-import OutlinedTextField from '../components/OutlinedTextField';
+
 import {withStyles} from '@material-ui/core/styles';
 
 const styles = {
@@ -19,7 +19,7 @@ class App extends React.Component {
 	  const {classes} = this.props;
 	  return (
 		  <div className={classes.container}>
-			  <Header/> <SimpleSlider/> <OutlinedTextField/>
+			  <Header/> <SimpleSlider/>
 		  </div>
     );
   }

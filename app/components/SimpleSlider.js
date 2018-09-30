@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Slider from '@material-ui/lab/Slider';
+import Slider from '@material-ui/lab/Slider';import OutlinedTextField from '../components/OutlinedTextField';
 
 const styles = {
 	slider : {
@@ -42,11 +42,14 @@ class SimpleSlider extends React.Component {
 		const { value } = this.state;
 
 		return (
-			<div className={classes.slider}>
-				<div className={classes['slider__label-container']}>
-					<span className={classes['slider__label']}>Past</span> <span className={classes['slider__label']}>Present</span> <span className={classes['slider__label']}>Future</span>
+			<div>
+				<div className={classes.slider}>
+					<div className={classes['slider__label-container']}>
+						<span className={classes['slider__label']}>Past</span> <span className={classes['slider__label']}>Present</span> <span className={classes['slider__label']}>Future</span>
+					</div>
+					<Slider className={classes['slider__value']} value={value} onChange={this.handleChange} min={0} max={2} step={1} aria-labelledby="label"/>
 				</div>
-				<Slider className={classes['slider__value']} value={value} onChange={this.handleChange} min={0} max={2} step={1} aria-labelledby="label"/>
+				 <OutlinedTextField timePeriod={this.state.value}/>
 			</div>
 		);
 	}

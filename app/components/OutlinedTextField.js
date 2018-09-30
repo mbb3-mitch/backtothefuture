@@ -19,8 +19,7 @@ const styles = theme => ({
 class OutlinedTextFields extends React.Component {
 	state = {
 		name: '',
-		result : '',
-		timePeriod : 2
+		result : ''
 	};
 
 
@@ -29,9 +28,9 @@ class OutlinedTextFields extends React.Component {
 			[name]: event.target.value,
 			//result: event.target.value
 		});
-
+		console.log(this.props.timePeriod);
 		let translator =new Translator();
-		switch (this.state.timePeriod) {
+		switch (this.props.timePeriod) {
 			case 0:
 				translator.toOldEnglish(event.target.value, (err, result)=>{
 					this.updateResult(result);
