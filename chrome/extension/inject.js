@@ -11,7 +11,11 @@ function replaceFont() {
 	newFont.id = 'old-font';
     newFont.textContent = "      * {\n" +
         "        font-family: 'Quintessential' !important;\n" +
-        "      }";
+        "      } \n" +
+        "img { \n" +
+        "-webkit-filter: sepia(100%); /* Safari 6.0 - 9.0 */\n" +
+        "    filter: sepia(100%); !important" +
+        "}";
     document.body.appendChild(newFont);
 }
 
