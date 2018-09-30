@@ -1,5 +1,6 @@
 const Translator = require("../../utils/Translator");
 const translator = new Translator();
+const $ = require('jquery');
 
 function replaceFont() {
     let fontLink = document.createElement('link');
@@ -7,10 +8,15 @@ function replaceFont() {
     fontLink.href = "https://fonts.googleapis.com/css?family=Quintessential";
     document.body.appendChild(fontLink);
     let newFont = document.createElement('style');
-    newFont.textContent = "      body {\n" +
+	newFont.id = 'old-font';
+    newFont.textContent = "      * {\n" +
         "        font-family: 'Quintessential' !important;\n" +
         "      }";
     document.body.appendChild(newFont);
+}
+
+function returnFont() {
+	$('style#old-font').remove();
 }
 
 window.addEventListener('load', () => {
@@ -38,6 +44,7 @@ window.addEventListener('load', () => {
 					});
 					break;
 				case 1:
+					returnFont();
 					translator.translateHtml(textElements, 'english', (err) => {
 						if (err) {
 							console.log(err);
@@ -45,6 +52,7 @@ window.addEventListener('load', () => {
 					});
 					break;
 				case 2 :
+					returnFont();
 					translator.translateHtml(textElements, 'toEmoji', (err) => {
 						if (err) {
 							console.log(err);
@@ -68,12 +76,6 @@ window.addEventListener('load', () => {
 			textElements.push({el : all[i], english : all[i].innerText});
 		}
 	}
-/*
-	translator.translateHtml(textElements, 'toEmoji', (err) => {
-		if (err) {
-			console.log(err);
-		}
-	});*/
 });
 
 
