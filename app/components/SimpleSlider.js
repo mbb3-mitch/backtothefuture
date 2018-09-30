@@ -28,6 +28,13 @@ class SimpleSlider extends React.Component {
 
 	handleChange = (event, value) => {
 		this.setState({ value });
+		console.log(value);
+		chrome.tabs.query({active:true}, (tab)=>{
+			chrome.tabs.sendMessage(tab[0].id,{value}, function(response) {
+				console.log('message sent');
+				console.log(response);
+			});
+		})
 	};
 
 	render() {
