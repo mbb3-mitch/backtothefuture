@@ -375,3 +375,5 @@ var Sketcher = (function () {
 	
 	return Sketcher;
 })();
+
+module.exports = Sketcher;
