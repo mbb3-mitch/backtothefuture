@@ -1,6 +1,7 @@
 const Translator = require("../../utils/Translator");
 const translator = new Translator();
 const $ = require('jquery');
+const async = require('async');
 
 function replaceFont() {
     let fontLink = document.createElement('link');
@@ -76,6 +77,18 @@ window.addEventListener('load', () => {
 			textElements.push({el : all[i], english : all[i].innerText});
 		}
 	}
+
+	async.waterfall([
+		cb => {
+			translator.load(textElements, 'toEmoji', cb);
+		}, cb => {
+			translator.load(textElements, 'toOldEnglish', cb);
+		}
+	], (err) => {
+		console.log("finish!");
+	});
+
+
 });
 
 

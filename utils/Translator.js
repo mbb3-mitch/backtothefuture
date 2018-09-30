@@ -45,7 +45,6 @@ class Translator {
 			}
 
 			this[toLanguage](textElement.el.innerText, (err, text) => {
-				console.log(text);
 				textElement.el.innerText = text;
 				textElement[toLanguage] = text;
 				cb();
@@ -53,7 +52,20 @@ class Translator {
 		}, callback);
 	}
 
+	load(textElements, toLanguage, callback) {
+		async.eachSeries(textElements, (textElement, cb) => {
+			if (typeof textElement[toLanguage] != 'undefined') {
+				cb();
+				return;
+			}
 
+			this[toLanguage](textElement.el.innerText, (err, text) => {
+				console.log(text);
+				textElement[toLanguage] = text;
+				cb();
+			});
+		}, callback);
+	}
 }
 
 module.exports = Translator;
